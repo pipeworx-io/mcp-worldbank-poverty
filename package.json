@@ -1,20 +1,32 @@
 {
   "name": "@pipeworx/mcp-worldbank-poverty",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "World Bank Poverty and Inequality Platform (PIP) MCP.",
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
+  "bin": {
+    "mcp-worldbank-poverty": "bin/cli.js"
+  },
   "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "worldbank-poverty"],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pipeworx-io/mcp-worldbank-poverty"
+    "url": "git+https://github.com/pipeworx-io/mcp-worldbank-poverty.git"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "tsx": "^4.19.0"
+  },
   "devDependencies": {
-    "typescript": "^5.7.0"
+    "typescript": "^5.9.3",
+    "@cloudflare/workers-types": "^4.20260405.1"
+  },
+  "pipeworx": {
+    "sourceHash": "v1-28af8a8b6ec642527e512ca55ec1c8b624efc0fe299f93f3f45d01db2fbe699f",
+    "sourceCommit": "b0fb3c31386cf0256dcf1e2f1b3440435a87ec35"
   }
 }
