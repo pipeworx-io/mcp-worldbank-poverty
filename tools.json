@@ -1,0 +1,66 @@
+[
+  {
+    "name": "get_poverty",
+    "description": "Official World Bank poverty & inequality estimates for a country (or all countries). Returns poverty headcount, poverty gap, poverty severity, Gini, mean & median welfare (income or consumption, $/day in 2017 PPP), income deciles, and population in poverty. Use povline to pick the international line: 2.15 (extreme poverty), 3.65 (lower-middle-income), 6.85 (upper-middle-income).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "ISO3 country code (e.g. \"BRA\", \"IND\", \"NGA\") or \"all\" for every country. Default \"all\"."
+        },
+        "year": {
+          "type": "string",
+          "description": "Reporting year (e.g. \"2020\") or \"all\" for the full time series. Default \"all\"."
+        },
+        "povline": {
+          "type": "number",
+          "description": "Poverty line in $/day (2017 PPP). Common values: 2.15, 3.65, 6.85. Default 2.15."
+        },
+        "fill_gaps": {
+          "type": "boolean",
+          "description": "If true, interpolate/extrapolate estimates for years without a survey. Default false (survey years only)."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_poverty_regional",
+    "description": "Aggregated World Bank poverty estimates at the regional/group level (not per-country). Returns headcount, poverty gap, mean welfare, and total population in poverty for each group. group_by controls the aggregation: \"wb\" = World Bank geographic regions, \"inc\" = income groups (HIC/UMIC/LMIC/LIC), \"none\" = global total.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "string",
+          "description": "Reporting year (e.g. \"2020\") or \"all\". Default \"all\"."
+        },
+        "povline": {
+          "type": "number",
+          "description": "Poverty line in $/day (2017 PPP). Common values: 2.15, 3.65, 6.85. Default 2.15."
+        },
+        "group_by": {
+          "type": "string",
+          "enum": [
+            "wb",
+            "inc",
+            "none"
+          ],
+          "description": "Aggregation: \"wb\" geographic regions, \"inc\" income groups, \"none\" global total. Default \"wb\"."
+        }
+      }
+    }
+  },
+  {
+    "name": "list_reference",
+    "description": "Reference / metadata for the PIP dataset. table=\"versions\" lists available data releases & PPP rounds; table=\"aux_list\" lists all auxiliary tables; any other value (e.g. \"countries\", \"regions\", \"poverty_lines\", \"indicators\", \"dictionary\") returns that auxiliary table. Use to look up valid country codes, region mappings, or supported indicators.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "table": {
+          "type": "string",
+          "description": "\"versions\", \"aux_list\", or an auxiliary table name like \"countries\" | \"regions\" | \"poverty_lines\" | \"indicators\" | \"dictionary\". Default \"versions\"."
+        }
+      }
+    }
+  }
+]
